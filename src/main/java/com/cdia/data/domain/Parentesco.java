@@ -6,20 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MTDEPTO")
-public class Departamento {
-		
+@Table(name="MTPARENT")
+public class Parentesco {
 	private String id;
 	private String nombre;
 	
-	public Departamento() { }
+	public Parentesco() { }
 	
-	public Departamento(String id) { 
+	public Parentesco(String id) {
 		this.id = id;
 	}
 
 	@Id
-	@Column(name="CODDEPTO")
+	@Column(name="CODPAREN")
 	public String getId() {
 		return id;
 	}
@@ -39,7 +38,7 @@ public class Departamento {
 
 	@Override
 	public String toString() {
-		return "DEPART:"+nombre;
-	}
-	
+		return "Parentesco:"+nombre;
+	}	
+
 }

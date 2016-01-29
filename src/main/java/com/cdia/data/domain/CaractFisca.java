@@ -7,23 +7,15 @@ import javax.persistence.Entity;
 @Embeddable
 public class CaractFisca {
 	
-	@Column(name="SEXO")
-	private char sexo;
-	
-	@Column(name="PESO")	
+	private char sexo;			
 	private Float peso;
-	
-	@Column(name="ESTATURA")
 	private Float estatur;
-	
-	@Column(name="LIMITACION")	
 	private String limFisic;
-	
-	@Column(name="GRUPOSAN")	
 	private String tpSangr;
 	
 	public CaractFisca() { }
 
+	@Column(name="SEXO")
 	public char getSexo() {
 		return sexo;
 	}
@@ -32,6 +24,7 @@ public class CaractFisca {
 		this.sexo = sexo;
 	}
 
+	@Column(name="PESO")
 	public Float getPeso() {
 		return peso;
 	}
@@ -40,6 +33,7 @@ public class CaractFisca {
 		this.peso = peso;
 	}
 
+	@Column(name="ESTATURA")
 	public Float getEstatur() {
 		return estatur;
 	}
@@ -48,6 +42,7 @@ public class CaractFisca {
 		this.estatur = estatur;
 	}
 
+	@Column(name="LIMITACION")
 	public String getLimFisic() {
 		return limFisic;
 	}
@@ -56,6 +51,7 @@ public class CaractFisca {
 		this.limFisic = limFisic;
 	}
 
+	@Column(name="GRUPOSAN")	
 	public String getTpSangr() {
 		return tpSangr;
 	}

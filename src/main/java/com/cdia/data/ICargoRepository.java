@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cdia.data.domain.Cargo;
 
-@Repository
 public interface ICargoRepository extends CrudRepository<Cargo,String>{
 
 }

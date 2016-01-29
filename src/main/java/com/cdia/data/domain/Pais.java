@@ -7,17 +7,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="MTPAISES")
-public class Pais {
+public class Pais {	
 	
-	@Id
-	@Column(name="CODIGO")
-	private String id;
-	
-	@Column(name="NOMBRE")
+	private String id;	
 	private String nombre;
 	
 	public Pais() { }
+	
+	public Pais(String id) {
+		this.id =id;
+	}
 
+	@Id
+	@Column(name="CODIGO")
 	public String getId() {
 		return id;
 	}
@@ -26,6 +28,7 @@ public class Pais {
 		this.id = id;
 	}
 
+	@Column(name="NOMBRE")
 	public String getNombre() {
 		return nombre;
 	}

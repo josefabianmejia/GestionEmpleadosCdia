@@ -24,7 +24,7 @@ public class LocalzServiceTest {
 	private ILugarService lService;	
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void findAllPaises(){
 		System.out.println("Lista de paises\n");
 		List<Pais> list = lService.findAllPaises();
@@ -37,6 +37,7 @@ public class LocalzServiceTest {
 	
 	@Test
 	@Ignore
+	
 	public void findAllDepartamts(){
 		System.out.println("Lista de departamentos\n");
 		List<Departamento> list = lService.findAllDepartamts();
@@ -46,7 +47,9 @@ public class LocalzServiceTest {
 		}
 	}
 	
+	
 	@Test
+	@Ignore
 	public void findAllCiudads(){
 		System.out.println("lista de ciudades\n");
 		List<Ciudad> list = lService.findAllCiudads();

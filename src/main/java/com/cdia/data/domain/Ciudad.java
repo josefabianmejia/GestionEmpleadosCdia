@@ -8,24 +8,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name="CIUDAD")
 public class Ciudad {
-	
-	@Id
-	@Column(name="CODCIUDAD")
-	private Long id;
-	
-	@Column(name="NOMBRE")
+		
+	private String id;	
 	private String nombre;
 	
 	public Ciudad() { }
+	
+	public Ciudad(String id) { 
+		this.id=id;
+	}
 
-	public Long getId() {
+	@Id
+	@Column(name="CODCIUDAD")
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
+	@Column(name="NOMBRE")
 	public String getNombre() {
 		return nombre;
 	}

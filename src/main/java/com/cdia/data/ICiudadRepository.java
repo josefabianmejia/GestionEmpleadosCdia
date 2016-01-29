@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cdia.data.domain.Ciudad;
 
-@Repository
 public interface ICiudadRepository extends CrudRepository<Ciudad, String>{
 
 }

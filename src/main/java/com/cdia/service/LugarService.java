@@ -1,5 +1,6 @@
 package com.cdia.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,23 @@ public class LugarService implements ILugarService{
 
 	@Override
 	public List<Pais> findAllPaises() {
-		return (List<Pais>) pRepository.findAll();
+		try{
+			return (List<Pais>) pRepository.findAll();
+		}catch(Exception ex){ return new ArrayList<Pais>(); }		
 	}
 
 	@Override
 	public List<Departamento> findAllDepartamts() {
-		return (List<Departamento>)dRepository.findAll();
+		try{
+			return (List<Departamento>)dRepository.findAll();
+		}catch(Exception ex){ return new ArrayList<Departamento>();}
 	}
 
 	@Override
 	public List<Ciudad> findAllCiudads() {
-		return (List<Ciudad>)cRepositoty.findAll();
+		try{
+			return (List<Ciudad>)cRepositoty.findAll();
+		}catch(Exception ex){ return new ArrayList<Ciudad>();}
 	}
 
 }

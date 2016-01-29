@@ -1,5 +1,4 @@
 package com.cdia.data.domain;
-import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,16 +9,17 @@ import javax.persistence.Table;
 @Table(name="MTDEPEN")
 public class Dependencia {
 	
-	@Id
-	@Column(name="DEPEN")
 	private String id;
-	
-	@Column(name="NOMBRE")
 	private String nombre;
 	
-    public Dependencia() {
+    public Dependencia() { }
+    
+    public Dependencia(String id) {
+    	this.id = id;
     }
 
+    @Id
+	@Column(name="DEPEN")
 	public String getId() {
 		return id;
 	}
@@ -28,6 +28,7 @@ public class Dependencia {
 		this.id = id;
 	}
 
+	@Column(name="NOMBRE")
 	public String getNombre() {
 		return nombre;
 	}

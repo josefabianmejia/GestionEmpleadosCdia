@@ -1,7 +1,5 @@
 package com.cdia.data.domain;
 
-import java.util.*;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,19 +10,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name="MTCARGOS")
 public class Cargo {
-	@Id
-	@Column(name="CODCARGO")
-	private String id;
 	
-	@Column(name="NOMCARGO")
-	private String nombre;
-	
-	@ManyToOne
-	@JoinColumn(name="DEPEN")
+	private String id;	
+	private String nombre;	
 	private Dependencia dependencia;
 		
     public Cargo() { }
+    
+    public Cargo(String id) {
+    	this.id = id;
+    }
 
+
+    @Id
+	@Column(name="CODCARGO")
 	public String getId() {
 		return id;
 	}
@@ -32,7 +31,8 @@ public class Cargo {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
+	@Column(name="NOMCARGO")
 	public String getNombre() {
 		return nombre;
 	}
@@ -41,6 +41,8 @@ public class Cargo {
 		this.nombre = nombre;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="DEPEN")
 	public Dependencia getDependencia() {
 		return dependencia;
 	}
@@ -51,8 +53,7 @@ public class Cargo {
 
 	@Override
 	public String toString() {
-		return "CARGO:"+nombre+dependencia;
+		return "CARGO:"+id+nombre+dependencia;
 	}
-	
 	        
 }

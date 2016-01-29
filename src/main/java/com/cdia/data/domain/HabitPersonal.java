@@ -8,23 +8,15 @@ import org.hibernate.annotations.Type;
 @Embeddable
 public class HabitPersonal {
 	
-	@Column(name="FUMA")
-	@Type(type="org.hibernate.type.NumericBooleanType")
-	private boolean isfuma;
-	
-	@Column(name="ANTEOJOS")
-	@Type(type="org.hibernate.type.NumericBooleanType")
-	private boolean isAntOjs;
-	
-	@Column(name="BEBE")
-	@Type(type="org.hibernate.type.NumericBooleanType")
-	private boolean isConsLic;
-	
-	@Column(name="PASATIEMPO")
+	private boolean isfuma;	
+	private boolean isAntOjs;	
+	private boolean isConsLic;	
 	private String pasaTiemp;
 	
 	public HabitPersonal() { }
 
+	@Column(name="FUMA")
+	@Type(type="org.hibernate.type.NumericBooleanType")
 	public boolean isIsfuma() {
 		return isfuma;
 	}
@@ -33,6 +25,8 @@ public class HabitPersonal {
 		this.isfuma = isfuma;
 	}
 
+	@Column(name="ANTEOJOS")
+	@Type(type="org.hibernate.type.NumericBooleanType")
 	public boolean isAntOjs() {
 		return isAntOjs;
 	}
@@ -41,6 +35,8 @@ public class HabitPersonal {
 		this.isAntOjs = isAntOjs;
 	}
 
+	@Column(name="BEBE")
+	@Type(type="org.hibernate.type.NumericBooleanType")
 	public boolean isConsLic() {
 		return isConsLic;
 	}
@@ -49,6 +45,7 @@ public class HabitPersonal {
 		this.isConsLic = isConsLic;
 	}
 
+	@Column(name="PASATIEMPO")
 	public String getPasaTiemp() {
 		return pasaTiemp;
 	}

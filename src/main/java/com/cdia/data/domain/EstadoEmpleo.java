@@ -6,20 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MTDEPTO")
-public class Departamento {
-		
-	private String id;
+@Table(name="MTESTADO")
+public class EstadoEmpleo {
+	
+	private String id;	
 	private String nombre;
 	
-	public Departamento() { }
-	
-	public Departamento(String id) { 
-		this.id = id;
-	}
+	public EstadoEmpleo() { }
 
 	@Id
-	@Column(name="CODDEPTO")
+	@Column(name="CODESTADO")
 	public String getId() {
 		return id;
 	}
@@ -35,11 +31,6 @@ public class Departamento {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	@Override
-	public String toString() {
-		return "DEPART:"+nombre;
 	}
 	
 }

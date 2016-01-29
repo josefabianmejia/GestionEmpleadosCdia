@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cdia.data.domain.Dependencia;
 
-@Repository
 public interface IDependciaRepository extends CrudRepository<Dependencia, String> {
 
 }
