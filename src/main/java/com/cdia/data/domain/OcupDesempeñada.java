@@ -3,17 +3,24 @@ package com.cdia.data.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompositeExpLab extends ExpLaboral{
+public class OcupDesempeñada extends ExpLaboral{
+	private static ExpLaboral instance = new OcupDesempeñada();
 	private List<ExpLaboral> list = new ArrayList<>();
 	
+	private OcupDesempeñada() {  }
+	
+	public static ExpLaboral getInstance(){
+		return instance;
+	}	
+	
 	@Override
-	public void add(ExpLaboral e) {
-		list.add(e);	
+	public boolean add(ExpLaboral e) {
+		return list.add(e);	
 	}
 
 	@Override
-	public void remove(ExpLaboral e) {
-		list.remove(e);		
+	public boolean remove(ExpLaboral e) {
+		return list.remove(e);		
 	}
 
 	@Override

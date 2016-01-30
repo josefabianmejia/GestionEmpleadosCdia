@@ -1,7 +1,5 @@
 package com.cdia.data.domain;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,13 +13,12 @@ import javax.persistence.Table;
 public class Empleado extends Persona {
 	
 	private String id;	
-	private String apells;
+	private String doc;	
+	private String apells;	
 	private String email;
 	private int numPersCarg;	
 	private int numHjos;	
-	private Pais paisNac;	
-	private Departamento deptoNac;	
-	private Ciudad ciudadNac;
+	private NacimtoEmpleado nacimtoEmpleado;
 	private TpVivienda tpVivienda;
 	private CaractFisca caractFisc;
 	private HabitPersonal habits;	
@@ -44,6 +41,15 @@ public class Empleado extends Persona {
 		this.id = id;
 	}	
 	
+	@Column(name="CEDULA",nullable=false)
+	public String getDoc() {
+		return doc;
+	}
+	
+	public void setDoc(String doc) {
+		this.doc = doc;
+	}
+	
 	@Column(name="APELLIDO")	
 	public String getApells() {
 		return apells;
@@ -61,81 +67,6 @@ public class Empleado extends Persona {
 	public void setEmail(String email) {
 		this.email = email; 
 	}
-	
-	@Column(name="CEDULA",nullable=false)
-	@Override
-	public String getDoc() {
-		return doc;
-	}
-
-	@Column(name="TIPODCTO",nullable=false)
-	@Override
-	public Long getTpDoc() {
-		return tpDoc;
-	}
-
-	@Column(name="CCEXPED")
-	@Override
-	public String getCiudadExpDoc() {
-		return ciudadExpDoc;
-	}
-
-	@Column(name="FECNAC")	
-	@Override
-	public Date getFchNac() {
-		return fchNac;
-	}
-	
-	@Column(name="EDOCIV")
-	@Override
-	public char getEstadCiv() {
-		return estadCiv;
-	}
-	
-	@Column(name="NOMBRE")
-	@Override
-	public String getNombrs() {
-		return nombrs;
-	}	
-
-	@Column(name="TELEFONO")
-	@Override
-	public String getTel() {
-		return tel;
-	}
-
-	@Column(name="CELULAR")
-	@Override
-	public String getCel() {
-		return cel;
-	}
-	
-	@Column(name="DIRECCION")
-	@Override
-	public String getDirec() {
-		return direc;
-	}
-	
-	@ManyToOne
-	@JoinColumn(name="CODPAISRES")
-	@Override
-	public Pais getPaisResid() {
-		return PaisResid;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="CODDPTORES")
-	@Override
-	public Departamento getDeptoResid() {
-		return deptoResid;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="CODCIUDRES")
-	@Override
-	public Ciudad getCiudadResid() {
-		return ciudadResid;
-	}	
 
 	@Column(name="ACARGO")
 	public int getNumPersCarg() {
@@ -154,37 +85,16 @@ public class Empleado extends Persona {
 	public void setNumHjos(int numHjos) {
 		this.numHjos = numHjos;
 	}
-
-	@ManyToOne
-	@JoinColumn(name="CODPAISNAC")
-	public Pais getPaisNac() {
-		return paisNac;
-	}
-
-	public void setPaisNac(Pais paisNac) {
-		this.paisNac = paisNac;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="CODDPTONAC")
-	public Departamento getDeptoNac() {
-		return deptoNac;
-	}
 	
-	public void setDeptoNac(Departamento deptoNac) {
-		this.deptoNac = deptoNac;
+	@Embedded
+	public NacimtoEmpleado getNacimtoEmpleado() {
+		return nacimtoEmpleado;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="CODCIUDNAC")
-	public Ciudad getCiudadNac() {
-		return ciudadNac;
+	public void setNacimtoEmpleado(NacimtoEmpleado nacimtoEmpleado) {
+		this.nacimtoEmpleado = nacimtoEmpleado;
 	}
-	
-	public void setCiudadNac(Ciudad ciudadNac) {
-		this.ciudadNac = ciudadNac;
-	}
-	
+
 	@ManyToOne
 	@JoinColumn(name="CODVIVIEND")
 	public TpVivienda getTpVivienda() {

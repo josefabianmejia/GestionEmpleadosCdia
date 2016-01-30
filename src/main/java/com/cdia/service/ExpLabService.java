@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cdia.data.IExpLabRepository;
-import com.cdia.data.domain.CompositeExpLab;
+import com.cdia.data.domain.OcupDesempeñada;
 import com.cdia.data.domain.Empleado;
 import com.cdia.data.domain.ExpLaboral;
 import com.cdia.data.domain.Ocupacion;
@@ -45,9 +45,9 @@ public class ExpLabService implements IExpLabService{
 	}
 	
 	@Override
-	public ExpLaboral findAllExpLab(Empleado empleado) {		
+	public ExpLaboral findExpLab(Empleado empleado) {		
 		List<Ocupacion> list = eRepository.findAllByEmpleado(empleado);		
-		ExpLaboral exp = new CompositeExpLab();
+		ExpLaboral exp = OcupDesempeñada.getInstance();
 		for(ExpLaboral e:list){
 			exp.add(e);
 		}		

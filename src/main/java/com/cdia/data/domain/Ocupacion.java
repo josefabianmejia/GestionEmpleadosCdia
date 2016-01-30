@@ -94,10 +94,10 @@ public class Ocupacion extends ExpLaboral{
 	}	
 
 	@Override
-	public void add(ExpLaboral e) { }
+	public boolean add(ExpLaboral e) { return false; }
 
 	@Override
-	public void remove(ExpLaboral e) { }
+	public boolean remove(ExpLaboral e) {  return false; }
 
 	@Override
 	public ExpLaboral get(int i) { return this; }

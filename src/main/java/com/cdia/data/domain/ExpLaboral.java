@@ -5,8 +5,8 @@ public abstract class ExpLaboral {
 	
 	public ExpLaboral(){  }	
 	
-	public abstract void add(ExpLaboral e);
-	public abstract void remove(ExpLaboral e);
+	public abstract boolean add(ExpLaboral e);
+	public abstract boolean remove(ExpLaboral e);
 	public abstract ExpLaboral get(int i);	
 	public abstract int numeroExp();
 	public abstract void calcTiempExp();		

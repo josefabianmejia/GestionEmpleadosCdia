@@ -37,4 +37,10 @@ public class FamiliarServiceTest {
 			System.out.println("Familiar"+f);
 		}
 	}
+	
+	public void createFamiliar(){
+		Empleado empleado = new Empleado("19586847");
+		 
+	}
+	
 }

@@ -14,9 +14,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MVFAMIL")
 public class Familiar extends Persona {
+	
 	private Long id;
+	private String doc;	
+	private Date fchNac;
 	private Empleado empleado;
-	private Parentesco parentesco;
+	private Parentesco parentesco;	
 	
     public Familiar() {  }     
     
@@ -29,6 +32,24 @@ public class Familiar extends Persona {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	@Column(name = "CCPAREN")	
+	public String getDoc() {
+		return doc;
+	}
+	
+	public void setDoc(String doc) {
+		this.doc = doc;
+	}	
+	
+	@Column(name = "FHNACIM")	
+	public Date getFchNac() {
+		return fchNac;
+	}
+	
+	public void setFchNac(Date fchNac) {
+		this.fchNac = fchNac;
 	}
 	
 	@ManyToOne
@@ -51,84 +72,9 @@ public class Familiar extends Persona {
 		this.parentesco = parentesco;
 	}
 
-	@Column(name = "CCPAREN")
-	@Override
-	public String getDoc() {
-		return doc;
-	}
-
-	@Column(name = "TIPODCTO")
-	@Override
-	public Long getTpDoc() {
-		return tpDoc;
-	}
-
-	@Column(name = "CCEXPED")
-	@Override
-	public String getCiudadExpDoc() {
-		return ciudadExpDoc;
-	}
-
-	@Column(name = "FHNACIM")
-	@Override
-	public Date getFchNac() {
-		return fchNac;
-	}
-
-	@Column(name = "EDOCIV")
-	@Override
-	public char getEstadCiv() {
-		return estadCiv;
-	}
-
-	@Column(name = "NOMBRE")
-	@Override
-	public String getNombrs() {
-		return nombrs;
-	}	
-
-	@Column(name = "TELEFONO")
-	@Override
-	public String getTel() {
-		return tel;
-	}
-
-	@Column(name = "CELULAR")
-	@Override
-	public String getCel() {
-		return cel;
-	}
-	
-	@Column(name = "DIRECCION")
-	@Override
-	public String getDirec() {
-		return direc;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="CODPAISRES")
-	@Override
-	public Pais getPaisResid() {
-		return PaisResid;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="CODDPTORES")
-	@Override
-	public Departamento getDeptoResid() {
-		return deptoResid;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="CODCIUDRES")
-	@Override
-	public Ciudad getCiudadResid() {
-		return ciudadResid;
-	}
-
 	@Override
 	public String toString() {
-		return "Familiar:"+nombrs+"Parentesco:"+parentesco;
+		return "Familiar:"+contacto+"Parentesco:"+parentesco;
 	}
 	
 }
