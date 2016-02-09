@@ -14,9 +14,9 @@ import com.cdia.data.domain.Ciudad;
 import com.cdia.data.domain.Departamento;
 import com.cdia.data.domain.Pais;
 
-@Service
+@Service("lugarService")
 @Transactional
-public class LugarService implements ILugarService{
+public class LocalizacnService implements ILocalizacnService{
 	@Autowired
 	private IPaisRepository pRepository;
 	@Autowired
@@ -39,9 +39,9 @@ public class LugarService implements ILugarService{
 	}
 
 	@Override
-	public List<Ciudad> findAllCiudads() {
+	public List<Ciudad> findAllCiudads(Departamento dpto) {
 		try{
-			return (List<Ciudad>)cRepositoty.findAll();
+			return (List<Ciudad>)cRepositoty.findAllByIdStartingWith(dpto.getId());
 		}catch(Exception ex){ return new ArrayList<Ciudad>();}
 	}
 

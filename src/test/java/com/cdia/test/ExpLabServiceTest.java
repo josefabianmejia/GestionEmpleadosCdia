@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -16,11 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cdia.DakaEmpleadoApplication;
 import com.cdia.data.domain.Cargo;
-import com.cdia.data.domain.OcupDesempeñada;
-import com.cdia.data.domain.Empleado;
 import com.cdia.data.domain.ExpLaboral;
-import com.cdia.data.domain.Ocupacion;
-import com.cdia.data.domain.OcupacionPk;
+import com.cdia.data.domain.Empleado;
+import com.cdia.data.domain.AbstractExpLaboral;
+import com.cdia.data.domain.Labor;
 import com.cdia.service.IExpLabService;
 
 
@@ -36,7 +34,7 @@ public class ExpLabServiceTest {
 	public void findAllExpLabByEmpleado() {		
 		Empleado empleado = new Empleado("36666383");
 		
-		ExpLaboral exp = eService.findExpLab(empleado);
+		AbstractExpLaboral exp = eService.findExpLab(empleado);
 		System.out.println("Lista ocupaciones");
 		for(int i=0;i<exp.numeroExp();i++){
 			System.out.println(exp.get(i));
@@ -46,13 +44,13 @@ public class ExpLabServiceTest {
 	@Test
 	@Ignore
 	public void findExpLab(){
-		OcupacionPk ocupPk = new OcupacionPk(new Long(1), new Empleado("36666383"), new Cargo("ADMON"));
-		ExpLaboral exp = eService.findExpLabById(ocupPk);		
+		Long id  = new Long(1);
+		AbstractExpLaboral exp = eService.findExpLabById(id);		
 		System.out.println("Consultando Experiencia laboral:"+exp);
 	}
 		
 	@Test
-	//@Ignore
+	@Ignore
 	public void createExpLab(){		
 		
 		Empleado empleado = new Empleado("36666383");		
@@ -67,8 +65,8 @@ public class ExpLabServiceTest {
 			e.printStackTrace();
 		}
 		
-		ExpLaboral exp = OcupDesempeñada.getInstance();
-		Ocupacion ocup = new Ocupacion();		
+		AbstractExpLaboral exp = ExpLaboral.getInstance();
+		Labor ocup = new Labor();		
 		ocup.setCargo(cargo);
 		ocup.setEmpleado(empleado);
 		ocup.setFchIni(fchIni);

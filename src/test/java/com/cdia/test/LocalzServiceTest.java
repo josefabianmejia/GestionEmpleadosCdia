@@ -15,16 +15,16 @@ import com.cdia.DakaEmpleadoApplication;
 import com.cdia.data.domain.Ciudad;
 import com.cdia.data.domain.Departamento;
 import com.cdia.data.domain.Pais;
-import com.cdia.service.ILugarService;
+import com.cdia.service.ILocalizacnService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(DakaEmpleadoApplication.class)
 public class LocalzServiceTest {
 	@Autowired
-	private ILugarService lService;	
+	private ILocalizacnService lService;	
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void findAllPaises(){
 		System.out.println("Lista de paises\n");
 		List<Pais> list = lService.findAllPaises();
@@ -51,8 +51,9 @@ public class LocalzServiceTest {
 	@Test
 	@Ignore
 	public void findAllCiudads(){
+		Departamento dpto = new Departamento("47");
 		System.out.println("lista de ciudades\n");
-		List<Ciudad> list = lService.findAllCiudads();
+		List<Ciudad> list = lService.findAllCiudads(dpto);
 		
 		for(Ciudad c:list){
 			System.out.println("ciudad:"+c);

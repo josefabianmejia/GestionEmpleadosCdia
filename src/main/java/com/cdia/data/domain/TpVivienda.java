@@ -18,6 +18,12 @@ public class TpVivienda {
 		this.id = id;
 	}
 	
+	public TpVivienda(String id,String nombre) { 
+		this.id = id;
+		this.nombre = nombre;
+	}
+	
+	
 	@Id
 	@Column(name="CODVIVIEND")
 	public String getId() {

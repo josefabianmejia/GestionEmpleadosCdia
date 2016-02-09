@@ -11,7 +11,7 @@ import com.cdia.data.IFamiliarRepository;
 import com.cdia.data.domain.Empleado;
 import com.cdia.data.domain.Familiar;
 
-@Service
+@Service("familiarService")
 @Transactional
 public class FamiliarService implements IFamiliarService{
 	@Autowired

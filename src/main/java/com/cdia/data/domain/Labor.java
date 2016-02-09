@@ -9,26 +9,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="MVEXPLAB")
-@IdClass(OcupacionPk.class)
-public class Ocupacion extends ExpLaboral{	
+public class Labor extends AbstractExpLaboral{	
 	
 	private Long id;	
 	private Date fchIni;
 	protected Date fchFin;
 	private double salario;	
-	protected Empleado empleado;
+	protected Empleado empleado;	
 	protected Cargo cargo;
 	
-	public Ocupacion() { }
+	public Labor() { }
 	
-	public Ocupacion(Empleado empleado,Cargo cargo) { 		
+	public Labor(Empleado empleado,Cargo cargo) { 		
 		this.empleado = empleado;
 		this.cargo = cargo;
 	}
@@ -71,7 +69,6 @@ public class Ocupacion extends ExpLaboral{
 		this.salario = salario;
 	}
 	
-	@Id
 	@ManyToOne
 	@JoinColumn(name="CEDULA")	
 	public Empleado getEmpleado() {
@@ -82,7 +79,6 @@ public class Ocupacion extends ExpLaboral{
 		this.empleado = empleado;
 	}	
 
-	@Id
 	@ManyToOne
 	@JoinColumn(name="CODCARGO")		
 	public Cargo getCargo() {
@@ -94,13 +90,13 @@ public class Ocupacion extends ExpLaboral{
 	}	
 
 	@Override
-	public boolean add(ExpLaboral e) { return false; }
+	public boolean add(AbstractExpLaboral e) { return false; }
 
 	@Override
-	public boolean remove(ExpLaboral e) {  return false; }
+	public boolean remove(AbstractExpLaboral e) {  return false; }
 
 	@Override
-	public ExpLaboral get(int i) { return this; }
+	public AbstractExpLaboral get(int i) { return this; }
 	
 	@Override
 	public int numeroExp() {		

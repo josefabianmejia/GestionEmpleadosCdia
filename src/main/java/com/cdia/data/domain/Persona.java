@@ -8,9 +8,9 @@ import javax.persistence.MappedSuperclass;
 public abstract class Persona {
 	
 	protected Long tpDoc;
-	protected String ciudadExpDoc;
-	protected char estadCiv;	
-	protected Contacto contacto;		
+	protected String ciudadExpDoc;	
+	protected Contacto contacto;
+	protected Profesion profesion;
 	
 	public Persona() { }
 	
@@ -31,15 +31,6 @@ public abstract class Persona {
 	public void setCiudadExpDoc(String ciudadExpDoc) {
 		this.ciudadExpDoc = ciudadExpDoc;
 	}
-	
-	@Column(name = "EDOCIV")
-	public  char getEstadCiv(){
-		return estadCiv;
-	}
-	
-	public void setEstadCiv(char estadCiv) {
-		this.estadCiv = estadCiv;
-	}
 
 	@Embedded
 	public Contacto getContacto() {
@@ -49,6 +40,14 @@ public abstract class Persona {
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}
-	
+
+	@Embedded
+	public Profesion getProfesion() {
+		return profesion;
+	}
+
+	public void setProfesion(Profesion profesion) {
+		this.profesion = profesion;
+	}
 	
 }

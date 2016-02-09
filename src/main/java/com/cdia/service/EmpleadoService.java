@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cdia.data.IEmpleadoRepository;
 import com.cdia.data.domain.Empleado;
 
-@Service("EmpleadoService")
+@Service("empleadoService")
 @Transactional
 public class EmpleadoService implements IEmpleadoService {
 	@Autowired	

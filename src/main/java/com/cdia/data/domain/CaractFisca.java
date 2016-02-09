@@ -5,25 +5,15 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
 @Embeddable
-public class CaractFisca {
-	
-	private char sexo;			
+public class CaractFisca {	
+			
 	private Float peso;
 	private Float estatur;
 	private String limFisic;
 	private String tpSangr;
 	
 	public CaractFisca() { }
-
-	@Column(name="SEXO")
-	public char getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
-	}
-
+	
 	@Column(name="PESO")
 	public Float getPeso() {
 		return peso;
@@ -62,7 +52,7 @@ public class CaractFisca {
 
 	@Override
 	public String toString() {
-		return "Sex:"+sexo+" peso:"+peso+"tipSang:"+tpSangr;
+		return "peso:"+peso+"tipSang:"+tpSangr;
 	}
 	
 }

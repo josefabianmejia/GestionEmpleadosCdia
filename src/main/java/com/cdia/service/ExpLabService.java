@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cdia.data.IExpLabRepository;
-import com.cdia.data.domain.OcupDesempeñada;
-import com.cdia.data.domain.Empleado;
 import com.cdia.data.domain.ExpLaboral;
-import com.cdia.data.domain.Ocupacion;
-import com.cdia.data.domain.OcupacionPk;
+import com.cdia.data.domain.Empleado;
+import com.cdia.data.domain.AbstractExpLaboral;
+import com.cdia.data.domain.Labor;
 
-@Service
+@Service("expLabService")
 @Transactional
 public class ExpLabService implements IExpLabService{
 	
@@ -23,10 +22,10 @@ public class ExpLabService implements IExpLabService{
 	public ExpLabService() {  }
 
 	@Override
-	public boolean createExpLab(ExpLaboral expLaboral) {
+	public boolean createExpLab(AbstractExpLaboral expLaboral) {
 		try{
 			for(int i=0;i<expLaboral.numeroExp();i++){
-				Ocupacion exp = (Ocupacion) expLaboral.get(i);
+				Labor exp = (Labor) expLaboral.get(i);
 				eRepository.save(exp);
 			}
 			return true;
@@ -34,10 +33,10 @@ public class ExpLabService implements IExpLabService{
 	}
 
 	@Override
-	public boolean removeExpLab(ExpLaboral expLaboral) {
+	public boolean removeExpLab(AbstractExpLaboral expLaboral) {
 		try{
 			for(int i=0;i<expLaboral.numeroExp();i++){
-				Ocupacion exp = (Ocupacion)expLaboral.get(i);
+				Labor exp = (Labor)expLaboral.get(i);
 				eRepository.delete(exp);
 			}
 			return true;
@@ -45,18 +44,18 @@ public class ExpLabService implements IExpLabService{
 	}
 	
 	@Override
-	public ExpLaboral findExpLab(Empleado empleado) {		
-		List<Ocupacion> list = eRepository.findAllByEmpleado(empleado);		
-		ExpLaboral exp = OcupDesempeñada.getInstance();
-		for(ExpLaboral e:list){
+	public AbstractExpLaboral findExpLab(Empleado empleado) {		
+		List<Labor> list = eRepository.findAllByEmpleado(empleado);		
+		AbstractExpLaboral exp = ExpLaboral.getInstance();
+		for(AbstractExpLaboral e:list){
 			exp.add(e);
 		}		
 		return exp;
 	}
 
 	@Override
-	public ExpLaboral findExpLabById(OcupacionPk ocupacionPk) {		
-		return eRepository.findOne(ocupacionPk);
+	public AbstractExpLaboral findExpLabById(Long id) {		
+		return eRepository.findOne(id);
 	}	
 
 }

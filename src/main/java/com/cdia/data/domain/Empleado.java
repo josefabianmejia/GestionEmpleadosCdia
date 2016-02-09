@@ -17,12 +17,14 @@ public class Empleado extends Persona {
 	private String apells;	
 	private String email;
 	private int numPersCarg;	
-	private int numHjos;	
+	private int numHjos;		
+	private EstadoCivil<Character> estadCiv;
+	//private Character estadCiv;
+	private Sexo<Character> sexo;
 	private NacimtoEmpleado nacimtoEmpleado;
 	private TpVivienda tpVivienda;
 	private CaractFisca caractFisc;
-	private HabitPersonal habits;	
-	//private ExpLaboral expLaboral;
+	private HabitPersonal habits;		
 	private Empleo empleo;
 	
     public Empleado() { }  
@@ -87,6 +89,33 @@ public class Empleado extends Persona {
 	}
 	
 	@Embedded
+	public  EstadoCivil<Character> getEstadCiv(){
+		return estadCiv;
+	}
+	
+	public void setEstadCiv(EstadoCivil<Character> estadCiv) {
+		this.estadCiv = estadCiv;
+	}
+
+//	@Column(name = "EDOCIV")
+//	public  Character getEstadCiv(){
+//		return estadCiv;
+//	}
+//	
+//	public void setEstadCiv(Character estadCiv) {
+//		this.estadCiv = estadCiv;
+//	}
+	
+	@Embedded
+	public Sexo<Character> getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo<Character> sexo) {
+		this.sexo = sexo;
+	}
+	
+	@Embedded
 	public NacimtoEmpleado getNacimtoEmpleado() {
 		return nacimtoEmpleado;
 	}
@@ -122,15 +151,6 @@ public class Empleado extends Persona {
 	public void setHabits(HabitPersonal habits) {
 		this.habits = habits;
 	}
-	
-//	@Embedded
-//	public ExpLaboral getExpLaboral() {
-//		return expLaboral;
-//	}
-//
-//	public void setExpLaboral(ExpLaboral expLaboral) {
-//		this.expLaboral = expLaboral;
-//	}
 
 	@Embedded
 	public Empleo getEmpleo() {
@@ -143,7 +163,7 @@ public class Empleado extends Persona {
 
 	@Override
 	public String toString() {
-		return "EMPLEADO:"+id+" CARCT:"+caractFisc+habits;
+		return "EMPLEADO:"+id+" Contacto:"+contacto+" Caract:"+caractFisc+habits;
 	}
 
 }
