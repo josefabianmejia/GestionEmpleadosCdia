@@ -2,14 +2,13 @@ package com.cdia.test;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
-import javax.validation.constraints.AssertTrue;
+import java.util.Collection;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,7 +22,7 @@ import com.cdia.data.domain.EmpresaLabora;
 import com.cdia.data.domain.Eps;
 import com.cdia.data.domain.Familiar;
 import com.cdia.data.domain.FondoPens;
-import com.cdia.data.domain.ResidenciaLabora;
+import com.cdia.data.domain.ResidenciaLaboral;
 import com.cdia.data.domain.Sexo;
 import com.cdia.data.domain.Pais;
 import com.cdia.data.domain.Parentesco;
@@ -38,13 +37,14 @@ import com.cdia.ultil.PersonaFactory;
 @SpringApplicationConfiguration(DakaEmpleadoApplication.class)
 public class FamiliarServiceTest {
 	@Autowired
+	@Qualifier("familiarService")
 	private IFamiliarService fService;
 
 	@Test
 	@Ignore
 	public void findAllFamiliarByEmpleado() {
-		Empleado empleado = new Empleado("19586847");
-		List<Familiar> list = fService.findAllFamiliarByEmpleado(empleado);
+		Empleado empleado = new Empleado("1079658241");
+		Collection<Familiar> list = fService.findAllFamiliarByEmpleado(empleado);
 		
 		//assertTrue(list.size()==7);
 		
@@ -52,6 +52,15 @@ public class FamiliarServiceTest {
 		for(Familiar f:list){
 			System.out.println("Familiar"+f);
 		}
+	}
+	
+	@Test
+	@Ignore
+	public void getById(){
+		long id = 123987;
+		Familiar familiar  = fService.findFamiliarById(id);
+		
+		System.out.println("familiar: "+familiar);
 	}
 	
 	@Test
@@ -79,7 +88,7 @@ public class FamiliarServiceTest {
 		empresaLabora.setEmpresa("EMpresa 2");
 		empresaLabora.setOcupacion("Aux financiera");
 		
-		ResidenciaLabora residenciaLabora = new ResidenciaLabora();
+		ResidenciaLaboral residenciaLabora = new ResidenciaLaboral();
 		residenciaLabora.setPais(pais);
 		
 		residenciaLabora.setDepartamento(departamento);
@@ -90,9 +99,9 @@ public class FamiliarServiceTest {
 		prestacionSoc.setCesantia(new Cesantia("0"));
 		prestacionSoc.setEps(new Eps("0"));		
 		
-		empleado.setId("19586847");	
+		empleado.setId("1079658241");	
 		
-		familiar.setDoc("12345678");
+		familiar.setDoc("123987");
 		familiar.setEmpleado(empleado);
 		familiar.setSexo(new Sexo<Long>(new Long(2)));
 		familiar.setProfesion(profesion);
@@ -109,8 +118,8 @@ public class FamiliarServiceTest {
 	@Test
 	@Ignore
 	public void removeFamiliar(){
-		Long id = new Long(208);
-		Familiar familiar = fService.findFamiliarById(id);
+		long id = 214;
+		Familiar familiar = new Familiar(id);
 		System.out.println("Eliminando familiar");
 		fService.remove(familiar);
 	}

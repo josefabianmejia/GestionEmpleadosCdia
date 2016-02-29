@@ -1,21 +1,25 @@
 package com.cdia.service;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cdia.data.IFamiliarRepository;
+import com.cdia.data.IParentescoRepository;
 import com.cdia.data.domain.Empleado;
 import com.cdia.data.domain.Familiar;
+import com.cdia.data.domain.Parentesco;
 
 @Service("familiarService")
 @Transactional
 public class FamiliarService implements IFamiliarService{
 	@Autowired
-	private IFamiliarRepository fRepository;
+	private IFamiliarRepository fRepository;	
+	@Autowired
+	private IParentescoRepository pRepository;	
 
 	@Override
 	public boolean createOrModifyFamiliar(Familiar familiar) {
@@ -41,9 +45,16 @@ public class FamiliarService implements IFamiliarService{
 	} 
 
 	@Override
-	public List<Familiar> findAllFamiliarByEmpleado(Empleado empleado) {
+	public Collection<Familiar> findAllFamiliarByEmpleado(Empleado empleado) {
 		try{
 			return fRepository.findAllByEmpleado(empleado);
+		}catch(Exception exp){ return new ArrayList<>();}
+	}
+
+	@Override
+	public Collection<Parentesco> findAllParentescos() {
+		try{
+			return (Collection<Parentesco>)pRepository.findAll();
 		}catch(Exception exp){ return new ArrayList<>();}
 	}
 

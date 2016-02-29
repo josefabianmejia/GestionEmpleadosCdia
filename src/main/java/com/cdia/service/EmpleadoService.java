@@ -1,7 +1,9 @@
 package com.cdia.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +44,10 @@ public class EmpleadoService implements IEmpleadoService {
 	}
 
 	@Override
-	public List<Empleado> findAll() {			
+	public Collection<Empleado> findAll() {			
 		try{
-			return (List<Empleado>) pRepository.findAll();
-		}catch(Exception ex){ return new ArrayList<Empleado>(); }	
+			return (Collection<Empleado>) pRepository.findAll();
+		}catch(Exception ex){ return new HashSet<Empleado>(); }	
 	}
 
 }

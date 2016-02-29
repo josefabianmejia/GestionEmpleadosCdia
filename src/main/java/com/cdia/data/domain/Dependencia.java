@@ -39,6 +39,6 @@ public class Dependencia {
 
 	@Override
 	public String toString() {
-		return "DEPEN:"+nombre;
+		return "DEPEN:"+id+":"+nombre;
 	}
 }

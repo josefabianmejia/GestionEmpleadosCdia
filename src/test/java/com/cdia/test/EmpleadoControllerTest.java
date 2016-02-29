@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -18,6 +21,8 @@ import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+
+import java.util.Set;
 
 import com.cdia.DakaEmpleadoApplication;
 import com.cdia.data.domain.CaractFisca;
@@ -35,6 +40,7 @@ import com.cdia.data.domain.NacimtoEmpleado;
 import com.cdia.data.domain.Pais;
 import com.cdia.data.domain.Profesion;
 import com.cdia.data.domain.Sexo;
+import com.cdia.data.domain.TpDctoIdentificacion;
 import com.cdia.data.domain.TpVivienda;
 import com.cdia.ultil.EmpleadoFactory;
 import com.cdia.ultil.PersonaFactory;
@@ -42,26 +48,27 @@ import com.cdia.ultil.PersonaFactory;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(DakaEmpleadoApplication.class)
 @WebAppConfiguration
+@Rollback(value = true)
+@Transactional
 public class EmpleadoControllerTest {
 	
 	@Autowired
 	private WebApplicationContext wac; 
 	private MockMvc mockMvc;
 	private RestTemplate rest;
-	private final String URL = "http://localhost:9999/restDakaEmpleado/empleados";
+	private final String URL = "http://localhost:9999/api/gtaEmpleados/empleado";
 	
 	@Before
 	public void init(){
 		mockMvc = webAppContextSetup(wac).build();
 		rest = new RestTemplate();
 	}
-	
-	
+		
 	@Test
 	@Ignore
 	public void getEmpleado(){
 		try {
-			mockMvc.perform(get("/restDakaEmpleado/empleados/{id}","1079658249"))
+			mockMvc.perform(get("/api/gtaEmpleado/empleado/{id}","1079658249"))
 				   .andExpect(status().isOk())
 				   .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 			
@@ -73,11 +80,10 @@ public class EmpleadoControllerTest {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void createEmpleado(){
 		String id="1079658262";
-		String dc = "1079658262";
-		long tpdc = 0;
+		String dc = "1079658262";		
 		String nomb = "JESUS DAVID";
 		String apll = "MEJIA RADA";
 		String idPais = "169";
@@ -111,7 +117,7 @@ public class EmpleadoControllerTest {
 				
 		empleado.setId(id);	
 		empleado.setDoc(dc);
-		empleado.setTpDoc(tpdc);
+		empleado.setTpDoc(new TpDctoIdentificacion('1'));
 		empleado.setApells(apll);
 		empleado.setContacto(contacto);
 		empleado.setNacimtoEmpleado(nacimtoEmpleado);
@@ -150,8 +156,8 @@ public class EmpleadoControllerTest {
 		CaractFisca caractFisca = new CaractFisca();
 		HabitPersonal habitPersonal = new HabitPersonal();
 		
-		habitPersonal.setAntOjs(false);
-		habitPersonal.setConsLic(false);
+		habitPersonal.setIsAntOjs(false);
+		habitPersonal.setIsConsLic(false);
 		habitPersonal.setIsfuma(false);
 		habitPersonal.setPasaTiemp("Leer");		
 		
@@ -169,6 +175,9 @@ public class EmpleadoControllerTest {
 		rest.put(URL+"/{id}", empleado,id);
 		assertEquals("FELIX ENOC", empleado.getContacto().getNombrs().trim());	
 	}
+	
+	
+	
 	
 	
 }

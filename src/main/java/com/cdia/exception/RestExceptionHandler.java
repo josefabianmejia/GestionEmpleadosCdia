@@ -13,13 +13,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
-	
+		
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {		
 		
 				DetailError detailError = new DetailError();
-				detailError.setTitle("Mensaje no Legible");
+				detailError.setTitle("Recurso no encontrado");
 				detailError.setTimeStamp(new Date().getTime());
 				detailError.setStatus(status.value());
 				detailError.setDetail(ex.getMessage());
@@ -33,7 +33,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
 				DetailError detailError = new DetailError();
-				detailError.setTitle("Argumantos no validos");
+				detailError.setTitle("Argumentos no validos");
 				detailError.setTimeStamp(new Date().getTime());
 				detailError.setStatus(status.value());
 				detailError.setDetail(ex.getMessage());

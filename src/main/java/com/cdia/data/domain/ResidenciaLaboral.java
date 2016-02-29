@@ -5,12 +5,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ResidenciaLabora {
+public class ResidenciaLaboral {
 	private Pais Pais;
 	private Departamento departamento;
 	private Ciudad ciudad;
 	
-	public ResidenciaLabora() { }
+	public ResidenciaLaboral() { }
 
 	@ManyToOne
 	@JoinColumn(name="CODPAISLAB")

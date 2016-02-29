@@ -1,6 +1,6 @@
 package com.cdia.web;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,24 +16,24 @@ import com.cdia.data.domain.Departamento;
 import com.cdia.service.ILocalizacnService;
 
 @RestController
-@RequestMapping("/restDakaEmpleado")
+@RequestMapping("/api/gtaEmpleados/localizacion")
 public class LocalizacionController {
 	
 	@Autowired
 	private ILocalizacnService lService;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/{idPais}/departamentos")
-	public ResponseEntity<?> getAllDptos(@PathVariable("idPais") String idPais){
-		List<Departamento> list = lService.findAllDepartamts();
+	@RequestMapping(method = RequestMethod.GET, value = "/pais/{id}/departamento")
+	public ResponseEntity<?> getAllDptos(@PathVariable("id") String id){
+		Collection<Departamento> list = lService.findAllDepartamts();
 			if(list == null){
 				throw new HttpMessageNotReadableException("No se encontro lista de departamentos");
 			}
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 		
-	@RequestMapping(method = RequestMethod.GET, value = "/{idDpto}/ciudades")
-	public ResponseEntity<?> getAllCiudades(@PathVariable("idDpto") String idDpto){
-		List<Ciudad> list = lService.findAllCiudads(new Departamento(idDpto));
+	@RequestMapping(method = RequestMethod.GET, value = "/departamento/{id}/ciudad")
+	public ResponseEntity<?> getAllCiudades(@PathVariable("id") String idDpto){
+		Collection<Ciudad> list = lService.findAllCiudads(new Departamento(idDpto));
 			if(list == null){
 				throw new HttpMessageNotReadableException("No se encontro lista de ciudades");
 			}

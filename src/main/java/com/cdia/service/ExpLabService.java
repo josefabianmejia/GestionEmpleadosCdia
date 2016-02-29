@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cdia.data.IExpLabRepository;
-import com.cdia.data.domain.ExpLaboral;
+import com.cdia.data.domain.ExpLaboralEmpleado;
 import com.cdia.data.domain.Empleado;
-import com.cdia.data.domain.AbstractExpLaboral;
-import com.cdia.data.domain.Labor;
+import com.cdia.data.domain.ExpLaboral;
 
 @Service("expLabService")
 @Transactional
@@ -22,40 +21,29 @@ public class ExpLabService implements IExpLabService{
 	public ExpLabService() {  }
 
 	@Override
-	public boolean createExpLab(AbstractExpLaboral expLaboral) {
+	public boolean createExpLab(ExpLaboral expLaboral) {
 		try{
-			for(int i=0;i<expLaboral.numeroExp();i++){
-				Labor exp = (Labor) expLaboral.get(i);
-				eRepository.save(exp);
-			}
+			eRepository.save(expLaboral);			
 			return true;
 		}catch(Exception ex){ return false; }		
 	}
 
 	@Override
-	public boolean removeExpLab(AbstractExpLaboral expLaboral) {
+	public boolean removeExpLab(ExpLaboral expLaboral) {
 		try{
-			for(int i=0;i<expLaboral.numeroExp();i++){
-				Labor exp = (Labor)expLaboral.get(i);
-				eRepository.delete(exp);
-			}
+			eRepository.delete(expLaboral);			
 			return true;
 		}catch(Exception ex){ return false;	}
 	}
 	
 	@Override
-	public AbstractExpLaboral findExpLab(Empleado empleado) {		
-		List<Labor> list = eRepository.findAllByEmpleado(empleado);		
-		AbstractExpLaboral exp = ExpLaboral.getInstance();
-		for(AbstractExpLaboral e:list){
+	public ExpLaboralEmpleado findExpLab(Empleado empleado) {		
+		List<ExpLaboral> list = eRepository.findAllByEmpleado(empleado);
+		ExpLaboralEmpleado exp = ExpLaboralEmpleado.getInstance();
+		for(ExpLaboral e:list){
 			exp.add(e);
 		}		
 		return exp;
-	}
-
-	@Override
-	public AbstractExpLaboral findExpLabById(Long id) {		
-		return eRepository.findOne(id);
 	}	
 
 }

@@ -1,12 +1,11 @@
 package com.cdia.service;
 
 import com.cdia.data.domain.Empleado;
-import com.cdia.data.domain.AbstractExpLaboral;
+import com.cdia.data.domain.ExpLaboral;
+import com.cdia.data.domain.ExpLaboralEmpleado;
 
 public interface IExpLabService {
-	public boolean createExpLab(AbstractExpLaboral expLaboral);
-	public boolean removeExpLab(AbstractExpLaboral expLaboral);	
-	public AbstractExpLaboral findExpLab(Empleado empleado);
-	public AbstractExpLaboral findExpLabById(Long id);
-	
+	public boolean createExpLab(ExpLaboral expLaboral);
+	public boolean removeExpLab(ExpLaboral expLaboral);	
+	public ExpLaboralEmpleado findExpLab(Empleado empleado);	
 }

@@ -2,14 +2,16 @@ package com.cdia.test;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cdia.DakaEmpleadoApplication;
 import com.cdia.data.domain.CaractFisca;
@@ -26,6 +28,7 @@ import com.cdia.data.domain.HabitPersonal;
 import com.cdia.data.domain.NacimtoEmpleado;
 import com.cdia.data.domain.Pais;
 import com.cdia.data.domain.Profesion;
+import com.cdia.data.domain.TpDctoIdentificacion;
 import com.cdia.data.domain.TpVivienda;
 import com.cdia.service.IEmpleadoService;
 import com.cdia.ultil.EmpleadoFactory;
@@ -33,6 +36,8 @@ import com.cdia.ultil.PersonaFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(DakaEmpleadoApplication.class)
+@Rollback(value = true)
+@Transactional
 public class EmpleadoServiceTest {
 	@Autowired
 	private IEmpleadoService pService;
@@ -42,7 +47,6 @@ public class EmpleadoServiceTest {
 	public void createEmpleado( ){
 		String id="1079658249";
 		String dc = "1079658249";
-		long tpdc = 0;
 		String nomb = "LUZ SARAY";
 		String apll = "MEJIA RADA";
 		String idPais = "169";
@@ -76,7 +80,7 @@ public class EmpleadoServiceTest {
 				
 		empleado.setId(id);	
 		empleado.setDoc(dc);
-		empleado.setTpDoc(tpdc);
+		empleado.setTpDoc(new TpDctoIdentificacion('1'));
 		empleado.setApells(apll);
 		empleado.setContacto(contacto);
 		empleado.setNacimtoEmpleado(nacimtoEmpleado);
@@ -114,8 +118,8 @@ public class EmpleadoServiceTest {
 		CaractFisca caractFisca = new CaractFisca();
 		HabitPersonal habitPersonal = new HabitPersonal();
 		
-		habitPersonal.setAntOjs(false);
-		habitPersonal.setConsLic(false);
+		habitPersonal.setIsAntOjs(false);
+		habitPersonal.setIsConsLic(false);
 		habitPersonal.setIsfuma(false);
 		habitPersonal.setPasaTiemp("Leer");		
 		
@@ -164,7 +168,7 @@ public class EmpleadoServiceTest {
 	@Ignore
 	public void findAll(){
 		System.out.println("lista de Empleados\n");
-		List<Empleado> list = pService.findAll();
+		Collection<Empleado> list = pService.findAll();
 		
 		assertTrue(list.size()>0);
 		

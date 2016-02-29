@@ -1,6 +1,6 @@
 package com.cdia.web;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +17,7 @@ import com.cdia.data.domain.Empleado;
 import com.cdia.service.IEmpleadoService;
 
 @RestController
-@RequestMapping("/restDakaEmpleado/empleados")
+@RequestMapping("/api/gtaEmpleados/empleado")
 public class EmpleadoController {
 	@Autowired
 	@Qualifier("empleadoService")
@@ -25,7 +25,7 @@ public class EmpleadoController {
 	
 	public EmpleadoController() { }	
 	
-	@RequestMapping(method =  RequestMethod.GET, value ="/{id}", produces = {"application/json; charset=UTF-8","*/*;charset=UTF-8"} )
+	@RequestMapping(method =  RequestMethod.GET, value ="/{id}" )
 	public ResponseEntity<?> get(@PathVariable("id") String id ){		
 		Empleado empleado = eService.findEmpleado(id);
 			if(empleado == null){ 
@@ -36,7 +36,7 @@ public class EmpleadoController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getAll(){
-		List<Empleado> list = eService.findAll();
+		Collection<Empleado> list = eService.findAll();
 			if(list == null){ 
 				throw new HttpMessageNotReadableException("Error obteniendo lista de Empleados");
 			}			

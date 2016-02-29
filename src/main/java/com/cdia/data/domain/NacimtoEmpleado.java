@@ -7,6 +7,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Embeddable
 public class NacimtoEmpleado {
 	private Date fchNac;
@@ -17,6 +19,7 @@ public class NacimtoEmpleado {
 	public NacimtoEmpleado() { }
 	
 	@Column(name="FECNAC")		
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	public Date getFchNac() {
 		return fchNac;
 	}

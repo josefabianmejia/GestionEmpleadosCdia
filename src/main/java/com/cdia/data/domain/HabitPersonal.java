@@ -27,21 +27,21 @@ public class HabitPersonal {
 
 	@Column(name="ANTEOJOS")
 	@Type(type="org.hibernate.type.NumericBooleanType")
-	public boolean isAntOjs() {
+	public boolean isIsAntOjs() {
 		return isAntOjs;
 	}
 
-	public void setAntOjs(boolean isAntOjs) {
+	public void setIsAntOjs(boolean isAntOjs) {
 		this.isAntOjs = isAntOjs;
 	}
 
 	@Column(name="BEBE")
 	@Type(type="org.hibernate.type.NumericBooleanType")
-	public boolean isConsLic() {
+	public boolean isIsConsLic() {
 		return isConsLic;
 	}
 
-	public void setConsLic(boolean isConsLic) {
+	public void setIsConsLic(boolean isConsLic) {
 		this.isConsLic = isConsLic;
 	}
 

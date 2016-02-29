@@ -2,7 +2,7 @@ package com.cdia.test;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class PrestSocialServiceTest {
 	@Test
 	@Ignore
 	public void findAllFondos(){
-		List<FondoPens> list = fService.findAllFondos();
+		Collection<FondoPens> list = fService.findAllFondos();
 		
 		System.out.println("Lista de fondos:");
 		for(FondoPens f:list){
@@ -56,7 +56,7 @@ public class PrestSocialServiceTest {
 	@Test
 	@Ignore
 	public void findAllCesantias(){
-		List<Cesantia> list = cService.findAllCesantias();
+		Collection<Cesantia> list = cService.findAllCesantias();
 		
 		System.out.println("Lista de cesantias:");
 		for(Cesantia c:list){

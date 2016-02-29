@@ -19,7 +19,6 @@ public class Empleado extends Persona {
 	private int numPersCarg;	
 	private int numHjos;		
 	private EstadoCivil<Character> estadCiv;
-	//private Character estadCiv;
 	private Sexo<Character> sexo;
 	private NacimtoEmpleado nacimtoEmpleado;
 	private TpVivienda tpVivienda;
@@ -96,15 +95,6 @@ public class Empleado extends Persona {
 	public void setEstadCiv(EstadoCivil<Character> estadCiv) {
 		this.estadCiv = estadCiv;
 	}
-
-//	@Column(name = "EDOCIV")
-//	public  Character getEstadCiv(){
-//		return estadCiv;
-//	}
-//	
-//	public void setEstadCiv(Character estadCiv) {
-//		this.estadCiv = estadCiv;
-//	}
 	
 	@Embedded
 	public Sexo<Character> getSexo() {

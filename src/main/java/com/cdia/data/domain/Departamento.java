@@ -1,5 +1,7 @@
 package com.cdia.data.domain;
 
+import java.util.Comparator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -42,4 +44,18 @@ public class Departamento {
 		return "DEPART:"+nombre;
 	}
 	
+	public static class DepartamentoComparator implements Comparator<Departamento>{
+		public DepartamentoComparator() { }
+
+		@Override
+		public int compare(Departamento o1, Departamento o2) {
+			return o1.getNombre().compareTo(o2.getNombre());
+		}	
+		
+	}
+	
 }
+
+
+
+

@@ -2,7 +2,7 @@ package com.cdia.test;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,33 +27,30 @@ public class LocalzServiceTest {
 	@Ignore
 	public void findAllPaises(){
 		System.out.println("Lista de paises\n");
-		List<Pais> list = lService.findAllPaises();
+		Collection<Pais> list = lService.findAllPaises();
 		
 		for(Pais p: list){
 			System.out.println("pais:"+p); 
-		}
-		
+		}		
 	}
 	
 	@Test
-	@Ignore
-	
+	@Ignore	
 	public void findAllDepartamts(){
 		System.out.println("Lista de departamentos\n");
-		List<Departamento> list = lService.findAllDepartamts();
+		Collection<Departamento> list = lService.findAllDepartamts();
 		
 		for(Departamento d:list){
 			System.out.println("departamento:"+d);
 		}
-	}
-	
+	}	
 	
 	@Test
 	@Ignore
 	public void findAllCiudads(){
 		Departamento dpto = new Departamento("47");
 		System.out.println("lista de ciudades\n");
-		List<Ciudad> list = lService.findAllCiudads(dpto);
+		Collection<Ciudad> list = lService.findAllCiudads(dpto);
 		
 		for(Ciudad c:list){
 			System.out.println("ciudad:"+c);

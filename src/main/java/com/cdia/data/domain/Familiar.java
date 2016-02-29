@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "MVFAMIL")
@@ -26,10 +26,14 @@ public class Familiar extends Persona {
 	private Empleado empleado;
 	private Parentesco parentesco;	
 	private EmpresaLabora empresaLabora;
-	private ResidenciaLabora residenciaLabora;
+	private ResidenciaLaboral residenciaLabora;
 	private PrestacionSoc prestacionSoc;
 	
-    public Familiar() {  }     
+    public Familiar() {  }    
+    
+    public Familiar(Long id) { 
+    	this.id = id;
+    }   
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +56,7 @@ public class Familiar extends Persona {
 	}	
 	
 	@Column(name = "FHNACIM")	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	public Date getFchNac() {
 		return fchNac;
 	}
@@ -108,11 +113,11 @@ public class Familiar extends Persona {
 	}
 
 	@Embedded
-	public ResidenciaLabora getResidenciaLabora() {
+	public ResidenciaLaboral getResidenciaLabora() {
 		return residenciaLabora;
 	}
 
-	public void setResidenciaLabora(ResidenciaLabora residenciaLabora) {
+	public void setResidenciaLabora(ResidenciaLaboral residenciaLabora) {
 		this.residenciaLabora = residenciaLabora;
 	}
 	

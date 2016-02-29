@@ -24,6 +24,10 @@ public class RefLaboral {
 	private EmpresaLabora empresaLabora;
 	
 	public RefLaboral() {  }
+	
+	public RefLaboral(Long id) { 
+		this.id = id;		
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

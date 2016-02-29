@@ -21,7 +21,6 @@ public class Cargo {
     	this.id = id;
     }
 
-
     @Id
 	@Column(name="CODCARGO")
 	public String getId() {
